@@ -9,23 +9,43 @@
 <script type="text/javascript" src="js/scrollable.js"></script>
 <script>
 	$(document).ready(function(){
+		
+		$('#viewport').append('<div class="clase1"></div>')
+		
+		$('<div/>').addClass('clase1').appendTo('#viewport')
 		var divWidth=$(".carousel div").width();
 		var move=0;
+		var items=$(".carousel > div").size();
+		items -= 1;
 		$(".previousImg").click(function(event){
-			move = move + divWidth;
-			$(".carousel").animate({
-				left: move
-			}, 500, function() {
-				//Left Animation complete; 
-			});
+			if (move==0)
+			{
+				return;
+			}
+			else
+			{
+			  move = move + divWidth;
+			  $(".carousel").animate({
+			    left: move
+			  }, 500, function() {
+			    //Left Animation complete; 
+			  });
+			}
 		});
 		$(".nextImg").click(function(event){
-			move = move - divWidth;
-			$(".carousel").animate({
-				left: move
-			}, 500, function() {
-				//Right animation complete; 
-			});
+			if (move == (0 - divWidth*items))
+			{
+				return;
+			}
+			else 
+			{
+			  move = move - divWidth;
+			  $(".carousel").animate({
+				   left: move
+				}, 500, function() {
+					  //Right animation complete; 
+					  });
+			}
 		});
 	});
 </script>
@@ -101,6 +121,11 @@
 				<img src="img/gallery3.jpg">
 				<img src="img/gallery1.jpg">
 			</div>
+      <div>
+        <img src="img/gallery3.jpg">
+        <img src="img/gallery1.jpg">
+        <img src="img/gallery2.jpg">
+      </div>
 		</div>
 	</div>
 	<a class="nextImg">Next</a>
