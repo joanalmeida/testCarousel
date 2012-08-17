@@ -1,4 +1,4 @@
-#viewport{
+.viewport{
 	float: left;
 	position: relative;
 	overflow: hidden;
@@ -26,3 +26,4 @@
 .correteIzq{
 	left: -580px;
 }
+

@@ -1,116 +1,15 @@
 <html>
 <head>
-<!-- <script type="text/javascript" href="js/jquery.tools.min.js"></script> -->
-<link rel="stylesheet" type="text/css" href="css/scrollable-horizontal.css">
-<link rel="stylesheet" type="text/css" href="css/scrollable-buttons.css">
-<link rel="stylesheet" type="text/css" href="css/my-css.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-<script type="text/javascript" src="js/scrollable.js"></script>
-<script>
-	$(document).ready(function(){
-		
-		$('#viewport').append('<div class="clase1"></div>')
-		
-		$('<div/>').addClass('clase1').appendTo('#viewport')
-		var divWidth=$(".carousel div").width();
-		var move=0;
-		var items=$(".carousel > div").size();
-		items -= 1;
-		$(".previousImg").click(function(event){
-			if (move==0)
-			{
-				return;
-			}
-			else
-			{
-			  move = move + divWidth;
-			  $(".carousel").animate({
-			    left: move
-			  }, 500, function() {
-			    //Left Animation complete; 
-			  });
-			}
-		});
-		$(".nextImg").click(function(event){
-			if (move == (0 - divWidth*items))
-			{
-				return;
-			}
-			else 
-			{
-			  move = move - divWidth;
-			  $(".carousel").animate({
-				   left: move
-				}, 500, function() {
-					  //Right animation complete; 
-					  });
-			}
-		});
-	});
-</script>
-
-<style type="text/css">
-	ul{
-		list-style: none;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="my-css.css">
+<script type="text/javascript"src="jquery.js"></script>
+<script type="text/javascript" src="pluginjquery.js"></script>
 </head>
 <body>
 
-<div style="margin:0 auto; width: 634px; height:120px;">
-<!-- "previous page" action -->
-<a class="prev browse left"></a>
- 
-<!-- root element for scrollable -->
-<div class="scrollable" id="scrollable">
- 
-  <!-- root element for the items -->
-  <div class="items">
- 
-    <!-- 1-5 -->
-    <div>
-      <img src="http://farm1.static.flickr.com/143/321464099_a7cfcb95cf_t.jpg" />
-      <img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730_t.jpg" />
-      <img src="http://farm1.static.flickr.com/79/244441862_08ec9b6b49_t.jpg" />
-    </div>
- 
-    <!-- 5-10 -->
-    <div>
-      <img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" />
-      <img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" />
-      <img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" />
-    </div>
- 
-    <!-- 10-15 -->
-    <div>
-      <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
-      <img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
-      <img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
-    </div>
- 
-  </div>
- 
-</div>
- 
-<!-- "next page" action -->
-<a class="next browse right"></a>
-</div>
-
-<div>
-	<ul id="orderedlist">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-</div>
-
 <div style="margin:0 auto; width: 650px; height:320px;">
 	<a class="previousImg">Prev</a>
-	<div id="viewport">
-		<div class="carousel">
+	<div class="viewport">
+		<div id="c1" class="carousel">
 			<div>
 				<img src="img/gallery1.jpg">
 				<img src="img/gallery2.jpg">
@@ -130,5 +29,55 @@
 	</div>
 	<a class="nextImg">Next</a>
 </div>
+
+<div style="margin:0 auto; width: 650px; height:320px;">
+	<a class="previousImg">Prev</a>
+	<div class="viewport">
+		<div id="c2" class="carousel">
+			<div>
+				<img src="img/gallery1.jpg">
+				<img src="img/gallery2.jpg">
+				<img src="img/gallery3.jpg">
+			</div>
+			<div>
+				<img src="img/gallery2.jpg">
+				<img src="img/gallery3.jpg">
+				<img src="img/gallery1.jpg">
+			</div>
+      <div>
+        <img src="img/gallery3.jpg">
+        <img src="img/gallery1.jpg">
+        <img src="img/gallery2.jpg">
+      </div>
+		</div>
+	</div>
+	<a class="nextImg">Next</a>
+</div>
+
+
+<div style="margin:0 auto; width: 650px; height:320px;">
+	<a class="previousImg">Prev</a>
+	<div class="viewport">
+		<div id="c3" class="carousel">
+			<div>
+				<img src="img/gallery1.jpg">
+				<img src="img/gallery2.jpg">
+				<img src="img/gallery3.jpg">
+			</div>
+			<div>
+				<img src="img/gallery2.jpg">
+				<img src="img/gallery3.jpg">
+				<img src="img/gallery1.jpg">
+			</div>
+      <div>
+        <img src="img/gallery3.jpg">
+        <img src="img/gallery1.jpg">
+        <img src="img/gallery2.jpg">
+      </div>
+		</div>
+	</div>
+	<a class="nextImg">Next</a>
+</div>
+
 </body>
 </html>
