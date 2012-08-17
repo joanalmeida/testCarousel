@@ -2,21 +2,28 @@
 	float: left;
 	position: relative;
 	overflow: hidden;
-	width: 535px;
-	height: 290px;
+	width: 495px;
+/*   width: auto; */
+	height: 280px;
 }
 .carousel{
-	width: 20000px;
+/* 	float: left; */
 	position: absolute;
-	clear: both;
+/* 	clear: both; */
+	height: 280px;
 }
-.carousel img{
+.carousel *{
 	float: left;
 }
+/* .carousel img{ */
+/* 	float: left; */
+/* } */
 .previousImg{
 	float: left;
 }
 .nextImg{
 	float: left;
+/* 	clear: both; */
+	display: block;
 }
 

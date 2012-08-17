@@ -5,23 +5,19 @@
 			carousel($(elem), conf);
 		})
 	}
-
+	
 	function carousel(self, conf) {
 		var viewportWidth = self.parent().width();
-		var itemQuantity = self.find('img').size();
-		var itemWidth = self.find('img').eq(0).width();
-		var itemsPerView = viewportWidth / itemWidth;
-		var maxMoves = itemQuantity / itemsPerView;
-		var timesMoved = 0;
 		var move = 0;
+		var moves = 0;
 
 		self.parent().prev('.previousImg').click(function(event) {
-			if (move === 0) {
+			if (moves == 0) {
 				return;
 			}
-
-			move = move + viewportWidth;
-
+			moves -= 1;
+			
+			move += viewportWidth;
 			self.animate({
 				left : move
 			}, 500);
@@ -29,16 +25,22 @@
 		});
 
 		self.parent().next(".nextImg").click(function(event) {
-			if (timesMoved >= maxMoves) {
+			var childItems = self.children();
+			var totalWidth = 0;
+			$(childItems).each(function(index, elem) {
+				totalWidth += $(elem).width();
+			})
+			var maxMoves = Math.floor(totalWidth / viewportWidth) - 1;
+			
+			if (moves >= maxMoves) {
 				return;
-			}
-
-			move = move - viewportWidth;
+			}	
+			moves += 1;
+			
+			move -= viewportWidth;
 			self.animate({
 				left : move
 			}, 500);
-
-			timesMoved++;
 
 		});
 	};
