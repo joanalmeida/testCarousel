@@ -1,47 +1,50 @@
-(function($) { 
-		// jQuery plugin implementation
-	$.fn.carousel = function (conf) {
-	  $(this).each(function(index, elem){
-      carousel($(elem), conf);
-	  })
+(function($) {
+	// jQuery plugin implementation
+	$.fn.carousel = function(conf) {
+		$(this).each(function(index, elem) {
+			carousel($(elem), conf);
+		})
 	}
-	
-	function carousel (self, conf) { 
-    var divWidth = self.find('div').eq(0).width();
-		var move=0;
-		var items = self.find('div').size();
-		items -= 1;
 
-		console.log(self);
+	function carousel(self, conf) {
+		var viewportWidth = self.parent().width();
+		var itemQuantity = self.find('img').size();
+		var itemWidth = self.find('img').eq(0).width();
+		var itemsPerView = viewportWidth / itemWidth;
+		var maxMoves = itemQuantity / itemsPerView;
+		var timesMoved = 0;
+		var move = 0;
 
-		self.parent().prev('.previousImg').click(function(event){
+		self.parent().prev('.previousImg').click(function(event) {
 			if (move === 0) {
 				return;
-			}	
-			
-		  move = move + divWidth;
-		  
-		  self.animate({
-		    left: move
-		  }, 500);
-			
+			}
+
+			move = move + viewportWidth;
+
+			self.animate({
+				left : move
+			}, 500);
+
 		});
-    
-    self.parent().next(".nextImg").click(function(event){
-			if (move == (0 - divWidth * items)) {
+
+		self.parent().next(".nextImg").click(function(event) {
+			if (timesMoved >= maxMoves) {
 				return;
 			}
-			
-		  move = move - divWidth;
-		  self.animate({
-			   left: move
+
+			move = move - viewportWidth;
+			self.animate({
+				left : move
 			}, 500);
-		
+
+			timesMoved++;
+
 		});
 	};
 
 })(jQuery);
 
-$(document).ready(function(){
-  $('.carousel').carousel();
+$(document).ready(function() {
+	$('.carousel').carousel();
 })

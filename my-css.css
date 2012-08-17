@@ -2,19 +2,15 @@
 	float: left;
 	position: relative;
 	overflow: hidden;
-	width: 580px;
+	width: 535px;
 	height: 290px;
 }
 .carousel{
-	width: 20000em;
+	width: 20000px;
 	position: absolute;
 	clear: both;
 }
-.carousel div{
-	float: left;
-	width: 580px;
-}
-.carousel div img{
+.carousel img{
 	float: left;
 }
 .previousImg{
@@ -22,8 +18,5 @@
 }
 .nextImg{
 	float: left;
-}
-.correteIzq{
-	left: -580px;
 }
 
