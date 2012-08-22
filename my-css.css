@@ -1,21 +1,5 @@
 .viewport{
-/*	float: left;
-	position: relative;
-	overflow: hidden;*/
 	width: 495px;
 	height: 280px;
 }
-/*.carousel{
-  position: absolute;
-  height: inherit;
-}
-.carousel *{
-	float: left;
-}
-.previousImg{
-	float: left;
-}
-.nextImg{
-	float: left;
-} */
 
