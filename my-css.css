@@ -2,4 +2,44 @@
 	width: 495px;
 	height: 280px;
 }
+.viewportSmall{
+	width: 330px;
+	height: 280px;
+}
+.pagination p{
+	margin: 0;
+}
 
+.viewport #prevImgTop{
+  position: absolute;
+  top: 100px;
+  z-index: 1;
+}
+
+.viewport #nextImgTop{
+  position: absolute;
+  top: 100px;
+  z-index: 1;
+  right: 0px;
+}
+
+.viewport .pagination{
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+  left: 40%;
+}
+
+.viewport #prevImgBttm{
+  position: absolute;
+  z-index: 1;
+  bottom: 0px;
+  left: 30%;
+}
+
+.viewport #nextImgBttm{
+  position: absolute;
+  z-index: 1;
+  bottom: 0px;
+  left: 50%;
+}

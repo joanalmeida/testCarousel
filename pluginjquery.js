@@ -7,9 +7,9 @@
   }
 
   function carousel(self, conf) {
-    var viewportWidth = self.parent().width();
+    var viewportWidth = self.width();
     var currentPage = 0;
-    var childItems = self.children();
+    var carousel = self.find('.carousel');
 
     var settings = self.extend({
       'pagination' : false,
@@ -17,64 +17,72 @@
     }, conf);
 
     var totalWidth = 0;
-    childItems.each(function(index, elem) {
+    carousel.children().each(function(index, elem) {
       totalWidth += $(elem).width();
     })
     var maxPage = Math.ceil(totalWidth / viewportWidth) - 1;
-    
-    if(settings.pagination){
-      self.parent().next('.nextImg').after('<div class="pagination"><p>Page: ' + (currentPage + 1) + ' of ' + (maxPage + 1) + '</p></div>');
+
+    if (settings.pagination) {
+      carousel.after('<a id="nextImgBttm"class="arrow nextImg">Next</a>')
+              .after('<div class="pagination"><p>' + (currentPage + 1) + ' of '
+                     + (maxPage + 1) + '</p></div>')
+              .after('<a id="prevImgBttm" class="arrow previousImg">Prev</a>');
+
     }
 
     if (!settings.circular) {
-      self.parent().prev('.previousImg').addClass('disabled');
+      self.find('.previousImg').addClass('disabled');
     }
-    applyCss(self, totalWidth);
+    applyCss(carousel, totalWidth);
 
-    self.parent().prev('.previousImg').click(function(event) {
+    self.find('.previousImg').bind('click', function(event) {
       /* Moves the carrousel left */
-      self.go(currentPage - 1);
+      self.go(currentPage - 1, carousel);
     });
 
-    self.parent().next('.nextImg').click(function(event) {
+    self.find('.nextImg').bind('click', function(event) {
       /* Moves the carrousel right */
-      self.go(currentPage + 1);
+      self.go(currentPage + 1, carousel);
     });
 
-    self.go = function(page) {
+    self.go = function(page, carousel) {
       var self = this;
 
-      if ((page < 0  || page > maxPage) && !settings.circular) { 
+      if ((page < 0 || page > maxPage) && !settings.circular) {
         return;
       }
 
       // check the limits
-      page = page < 0 ? maxPage: page;
-      page = page > maxPage ? 0: page;
+      page = page < 0 ? maxPage : page;
+      page = page > maxPage ? 0 : page;
 
-      
-      /* Adds or removes the disable class to the next or previous
-       * buttons if not circular */
-      self.parent().next('.arrow.disabled').removeClass('disabled');
-      if (!settings.circular){
+      /*
+       * Adds or removes the disable class to the next or previous buttons if
+       * not circular
+       */
+      self.find('.arrow.disabled').removeClass('disabled');
+      if (!settings.circular) {
         if (page == maxPage) {
-          self.parent().next('.nextImg').addClass('disabled');
+          self.find('.nextImg').addClass('disabled');
         }
-        if (page == 0){
-          self.parent().prev('.previousImg').addClass('disabled');
+        if (page == 0) {
+          self.find('.previousImg').addClass('disabled');
         }
       }
 
       currentPage = page;
-      self.parent().nextAll('.pagination').html('<p>Page: ' + (page + 1) + ' of ' + (maxPage + 1) + '</p>');
-      
-      self.animate({
+
+      if (settings.pagination) {
+        self.find('.pagination').html(
+            '<p>' + (page + 1) + ' of ' + (maxPage + 1) + '</p>');
+      }
+
+      carousel.animate({
         left : -(page * viewportWidth)
       }, 500);
 
-    };
-  }
-  ;
+    }; //End of go function
+  }; //End of carousel function
 
 })(jQuery);
 
@@ -89,19 +97,19 @@ function applyCss(self, width) {
   self.children().each(function(index, elem) {
     $(elem).css('float', 'left');
   });
-  self.parent().prev('.previousImg').css('float', 'left');
-  self.parent().next('.nextImg').css('float', 'left');
-  self.parent().nextAll('.clear').css('clear', 'left');
 }
 
 $(window).load(function() {
-  $('.carousel1').carousel({
-    'pagination' : true,
-    'circular' : true,
-  });
-  $('.carousel2').carousel({
+  $('.viewport').carousel({
     'pagination' : true
+    // 'circular' : true
   });
-  
-  $('.carousel3').carousel();
+  // $('.carousel2').carousel({
+  //   'pagination' : true
+  // });
+
+  // $('.carousel3').carousel({
+  //   'circular' : true,
+  //   'pagination' : true
+  // });
 })
